@@ -2,5 +2,145 @@ Project Description
 
 Հյուրանոցների ամրագրման նախագիծը վեբ հավելված է, որը նախատեսված է հյուրանոցների ամրագրումների, սենյակների մատչելիության, հյուրերի մասին տեղեկատվության և ամրագրման մանրամասները կառավարելու համար:
 
+Project Structure
+
+1.Գլխավոր էջում ցուցադրում է տեղեկություններ հյուրանոցների մասին կամ հյուրանոցների ցանկը՝ հիմնված որոնման չափանիշների վրա(ըստ գների միջակայքի, աստղերի վարկանիշի, հարմարությունների և այլն)
+և հյուրերի համար ամրագրումներ կատարելու կամ մուտք գործելու տարբերակներ:
+
+2.Մանրամասն տեղեկությունների էջում թույլ է տալիս տեսնել հյուրանոցի մասին (անուն, նկարագրություն, հարմարություններ, լուսանկարներ, տեղանքի քարտեզ, լուսակնարկներշ
+սենյակների տեսակները և գնի մանրամասները) նաև որոնման չափանիշները նշելով որոնելու հնարավորություն: 
+
+3.Գրանցման էջ՝ նոր օգտվողի հաշիվ ստեղծելու համար:
+
+4.Մուտք գործելու էջ գոյություն ունեցող օգտվողների համար՝ մուտք գործելու համար:
+
+5.Ամրագրման էջ թույլ է տալիս հյուրերին  ընտրել ամսաթվերը և ամրագրումներ կատարել:
+
+6.Ամրագրման հաստատման էջ ցուցադրում է հաստատման մանրամասները հաջող ամրագրումից հետո (ամրագրման ID, ամսաթվեր, սենյակի տեսակ, ընդհանուր գինը և այլն):
+
+7.Օգտատիրոջ պրոֆիլ մուտք գործելուց հետո օգտվողները կարող են դիտել իրենց ամրագրումները, խմբագրել կամ չեղարկել ամրագրումները և կառավարել իրենց պրոֆիլը:Վճարման տեղեկատվության էջ՝ վճարման եղանակները կառավարելու համար:
+
+8.Ադմինիստրատորի  էջ ադմինիստրատորները կարող են ավելացնել նոր սենյակներ, կառավարել սենյակների առկայությունը, դիտել ամրագրման մանրամասները և կառավարել հյուրերի մասին տեղեկությունները:
+
+Project functionality -> API List
+	.register 
+	.login
+	.logout
+	.get_hotel_list
+	.check_room_availability
+	.add_to_selections
+	.selected_rooms
+	.make_booking
+	.checkout payment_success payment_failed
+	.view_booking_history
+	.delete_selection
+	.change_booking
+	.edit_hotel_details
+	.add_room_type
+	.add_room
+	.admin_dashboard
+	.notifications
+.admin
+login,
+view_users_profiles,
+change_price_room,
+logout
+
+.user
+register,
+login,
+check_room_availability,
+view_hotel_information,
+logout,
+change_profile,
+book_rooms,
+view_booking_history,
+change_booking,
+delete_booking
+
+	
+   
+
+Database:
+Model 1-UserProfile
+
+.user OneToOneField(User)
+.username CharField
+.password CharField
+.first_name CharField
+.last_name CharField
+.email EmailFiend
+.address CharField
+.phone_number CharField
+.date_of_birth DateField
+
+
+Model 2 - Hotel 
+
+.user ForeignKey(User)
+.name CharField
+.description TextField
+.address CharField or city country
+.image FileFiels
+.phone CharField
+.email EmailField
+.views IntegerField
+.hotel_id IntegerField ?
+.date DateTimeField
+
+Model 3 -RoomType
+
+.hotel ForeignKey(Hotel)
+.type CharField
+.price_per_night IntegerField
+.number_of_beds PositiveIntegerField
+.capacity PositiveIntegerField
+
+Model 4 -Room
+
+.hotel ForeignKey(Hotel)
+.room_type ForeignKey(RoomType)
+.room_number CharField
+.is_available BooleanField
+
+Model 5 - Booking
+
+.user ForeignKey(UserProfile)
+.payment_status CharField
+.full_name CharField
+.email EmailField
+.phone CharField
+.hotel ForeignKey(Hotel)
+.room_type ForeignKey(RoomType)
+.room ManyToManyField(Room)
+.total_price IntegerField
+.check_in_date DateField
+.check_out_date DateField
+.total_days PositiveInteger
+.num_adults PositiveInteger
+.num_childeren PositiveInteger
+.booking_id CharField
+.is_confirmed BooleanField
+
+Model 6 - Payment
+
+.book ForeignKey(Booking)
+.amount DecimalField
+.payment_method CharField
+
+Model 7 - Admin
+
+.username CharField
+.password CharField
+.first_name CharField
+.last_name CharField
+.address CharField
+.phone CharField
+
+Additional Info:
+   template link
+   similar websites Booking.com
+
+
 
 
