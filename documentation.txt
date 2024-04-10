@@ -62,14 +62,9 @@ delete_booking
    
 
 Database:
-Model 1-UserProfile
+Model 1 - Guest
 
 .user OneToOneField(User)
-.username CharField
-.password CharField
-.first_name CharField
-.last_name CharField
-.email EmailFiend
 .address CharField
 .phone_number CharField
 .date_of_birth DateField
@@ -130,6 +125,7 @@ Model 6 - Payment
 
 Model 7 - Admin
 
+.user ForeignKey(User)
 .username CharField
 .password CharField
 .first_name CharField
@@ -138,7 +134,7 @@ Model 7 - Admin
 .phone CharField
 
 Additional Info:
-   template link
+   template link https://themewagon.github.io/palatin/index.html
    similar websites Booking.com
 
 

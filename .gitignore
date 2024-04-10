@@ -5,6 +5,12 @@ __pycache__/
 
 # C extensions
 *.so
+src/hotels/models/migrations/
+src/.DS_Store 
+src/hotels/.DS_Store
+src/hotels/api/.DS_Store
+src/hotels/models/.DS_Store
+src/media/.DS_Store
 
 # Distribution / packaging
 .Python
