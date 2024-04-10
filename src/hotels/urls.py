@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .api.guest import register, login
+from .api.hotel import choose_hotel
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/register', register),
+    path('api/login', login),
+    path('api/home/', choose_hotel),
 ]

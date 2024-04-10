@@ -1,3 +1,2 @@
-from django.db import models
-
-# Create your models here.
+from .guest import Guest
+from .hotel import Hotel
