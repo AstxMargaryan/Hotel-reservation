@@ -16,12 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .api.guest import register, login
+from .api.guest import guest_register, guest_login
 from .api.hotel import choose_hotel
+from .api.index import index
+from .api.hotel_manager import hotel_manager_register, hotel_manager_login
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', index),
     path('admin/', admin.site.urls),
-    path('api/register', register),
-    path('api/login', login),
+    path('guest/register/', guest_register),
+    path('api/guest/login', guest_login),
     path('api/home/', choose_hotel),
-]
+    path('manager/register/', hotel_manager_register),
+    path('manager/login/', hotel_manager_login)
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
