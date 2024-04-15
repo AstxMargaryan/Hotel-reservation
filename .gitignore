@@ -11,6 +11,7 @@ src/hotels/.DS_Store
 src/hotels/api/.DS_Store
 src/hotels/models/.DS_Store
 src/media/.DS_Store
+src/staticfiles/
 
 # Distribution / packaging
 .Python
