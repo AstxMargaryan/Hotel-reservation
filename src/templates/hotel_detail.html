@@ -12,10 +12,10 @@
     <title>The Palatin - Hotel &amp; Resort Template</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="http://localhost:8000/static/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://localhost:8000/static/style.css">
 
 </head>
 
@@ -37,7 +37,7 @@
                     <nav class="classy-navbar justify-content-between" id="palatinNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="/api/home/" class="nav-brand"><img src="http://localhost:8000/static/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -55,13 +55,13 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li class="active"><a href="/api/home/">Home</a></li>
                                     <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="/api/home/">Home</a></li>
                                             <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="services.html">Services</a></li>
+                                            <li><a href="/api/hotels/">Hotels</a></li>
                                             <li><a href="rooms.html">Rooms</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
@@ -71,36 +71,36 @@
                                     <li><a href="#">Mega Menu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="/api/home/">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="/api/hotels/">Hotels</a></li>
                                                 <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
                                             </ul>
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="/api/home/">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="/api/hotels/">Hotels</a></li>
                                                 <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
                                             </ul>
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="/api/home/">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="/api/hotels/">Hotels</a></li>
                                                 <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
                                             </ul>
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="/api/home/">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="/api/hotels/">Hotels</a></li>
                                                 <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
@@ -108,7 +108,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="active"><a href="services.html">Services</a></li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
 
@@ -128,9 +128,9 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/bg-5.jpg);">
+    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(http://localhost:8000/static/img/bg-img/bg-6.jpg);">
         <div class="bradcumbContent">
-            <h2>Services</h2>
+            <h2>{{ hotel.name }}</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -205,175 +205,53 @@
     </div>
     <!-- ##### Book Now Area End ##### -->
 
-    <!-- ##### Service Intro Area Start ##### -->
-    <section class="services-intro">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Service Intro Text -->
-                <div class="col-12 col-lg-6">
-                    <div class="service-intro-text mb-100">
-                        <div class="section-heading">
-                            <div class="line-"></div>
-                            <h2>Amazing Services</h2>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
-                        <a href="#" class="btn palatin-btn mt-50">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Services Features -->
-                <div class="col-12 col-lg-6">
-                    <div class="row mb-100">
-
-                        <!-- Single Cool Facts -->
-                        <div class="col-12 col-sm-4">
-                            <div class="single-cool-fact">
-                                <div class="scf-text">
-                                    <i class="icon-cocktail-1"></i>
-                                    <p>Pool Beachbar</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Cool Facts -->
-                        <div class="col-12 col-sm-4">
-                            <div class="single-cool-fact">
-                                <div class="scf-text">
-                                    <i class="icon-swimming-pool"></i>
-                                    <p>Infinity Pool</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Cool Facts -->
-                        <div class="col-12 col-sm-4">
-                            <div class="single-cool-fact">
-                                <div class="scf-text">
-                                    <i class="icon-beach"></i>
-                                    <p>Sunbeds</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Service Intro Area End ##### -->
-
-    <!-- ##### Core Features Start ##### -->
-    <section class="core-features-area">
+    <!-- ##### Rooms Area Start ##### -->
+    <section class="rooms-area section-padding-0-100">
         <div class="container">
             <div class="row justify-content-center">
-
-                <!-- Single Core Feature Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-core-feature mb-100">
-                        <div class="bg-thumbnail bg-img" style="background-image: url(img/bg-img/12.jpg);"></div>
-                        <!-- Content -->
-                        <div class="feature-content">
-                            <i class="icon-sunset"></i>
-                            <h3>Wellness</h3>
-                            <p>Malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus. faucibus finibus.</p>
-                        </div>
+                <div class="col-12 col-lg-6">
+                    <div class="section-heading text-center">
+                        <div class="line-"></div>
+                        <!-- Hotel Name -->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Single Core Feature Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-core-feature mb-100">
-                        <div class="bg-thumbnail bg-img" style="background-image: url(img/bg-img/13.jpg);"></div>
-                        <!-- Content -->
-                        <div class="feature-content">
-                            <i class="icon-sunset"></i>
-                            <h3>Spa Center</h3>
-                            <p>Malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus. faucibus finibus.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Single Core Feature Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-core-feature mb-100">
-                        <div class="bg-thumbnail bg-img" style="background-image: url(img/bg-img/14.jpg);"></div>
-                        <!-- Content -->
-                        <div class="feature-content">
-                            <i class="icon-island"></i>
-                            <h3>Lounge Bar</h3>
-                            <p>Malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus. faucibus finibus.</p>
-                        </div>
-                    </div>
-                </div>
+<!-- Inside the rooms area section -->
+<div class="row">
+    {% for r in hotel.hotel_room_types.all %}
+    <!-- Iterate over each room type -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
+            <!-- Room Type Name -->
+            <h4>{{ r.type }}</h4>
+            <!-- Room Capacity, Price per Night, and Number of Beds -->
+            <div class="rooms-text">
+                <p>Capacity: {{ r.room_capacity }}</p>
+                <p class="price-area">Price: ${{ r.price_per_night }}/night</p>
+                <p>Number of Beds: {{ r.number_of_beds }}</p>
+                <!-- Additional Details -->
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque.</p>
+            </div>
+            <!-- Book Room Button -->
+            <a href="{% url 'room_type_detail' r.hotel.id room_type.id %}" class="book-room-btn btn palatin-btn">Book Room</a>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
 
             </div>
         </div>
     </section>
-    <!-- ##### Core Features End ##### -->
-
-    <!-- ##### Services Area Start ##### -->
-    <section class="services-area">
-        <div class="container">
-            <div class="row">
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <i class="icon-trekking"></i>
-                        <h4>Bike Rentals</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="200ms">
-                        <i class="icon-boat"></i>
-                        <h4>Boat Trips</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <i class="icon-restaurant"></i>
-                        <h4>Restaurants</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="400ms">
-                        <i class="icon-beach"></i>
-                        <h4>Massages</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <i class="icon-boarding-pass"></i>
-                        <h4>Event Tikets</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-service-area mb-100 wow fadeInUp" data-wow-delay="600ms">
-                        <i class="icon-sign"></i>
-                        <h4>Hiking</h4>
-                        <p>Nulla massa dui, posuere non erat in, eleifend mattis dui. Vivamus luctus luctus rhoncus. Donec sagittis nulla id finibus iaculis. Mauris odio tortor.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- ##### Services Area End ##### -->
+    <!-- ##### Rooms Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
@@ -383,7 +261,7 @@
                 <!-- Footer Widget Area -->
                 <div class="col-12 col-lg-5">
                     <div class="footer-widget-area mt-50">
-                        <a href="#" class="d-block mb-5"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="#" class="d-block mb-5"><img src="http://localhost:8000/static/img/core-img/logo.png" alt=""></a>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. </p>
                     </div>
                 </div>
@@ -392,7 +270,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="footer-widget-area mt-50">
                         <h6 class="widget-title mb-5">Find us on the map</h6>
-                        <img src="img/bg-img/footer-map.png" alt="">
+                        <img src="http://localhost:8000/static/img/bg-img/footer-map.png" alt="">
                     </div>
                 </div>
 
@@ -412,7 +290,7 @@
                     <div class="copywrite-text mt-30">
                         <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></a></p>
                     </div>
                 </div>
             </div>
@@ -422,15 +300,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="http://localhost:8000/static/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="http://localhost:8000/static/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="http://localhost:8000/static/js/bootstrap/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="http://localhost:8000/static/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="http://localhost:8000/static/js/active.js"></script>
 </body>
 
 </html>

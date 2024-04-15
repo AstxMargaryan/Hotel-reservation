@@ -5,7 +5,7 @@ from .roomtype import RoomType
 
 
 class Room(models.Model):
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='room_types')
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     room_number = models.CharField(max_length=2000)
     is_available = models.BooleanField(default=True)
