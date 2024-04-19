@@ -130,7 +130,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(http://localhost:8000/static/img/bg-img/bg-6.jpg);">
         <div class="bradcumbContent">
-            <h2>{{ hotel.name }}</h2>
+            <h2>{{ hotel.name }} </h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -213,7 +213,7 @@
                     <div class="section-heading text-center">
                         <div class="line-"></div>
                         <!-- Hotel Name -->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
+                        <p>{{hotel.description}}</p>
                     </div>
                 </div>
             </div>
@@ -221,31 +221,23 @@
 
 <!-- Inside the rooms area section -->
 <div class="row">
-    {% for r in hotel.hotel_room_types.all %}
-    <!-- Iterate over each room type -->
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
-            <!-- Room Type Name -->
-            <h4>{{ r.type }}</h4>
-            <!-- Room Capacity, Price per Night, and Number of Beds -->
-            <div class="rooms-text">
-                <p>Capacity: {{ r.room_capacity }}</p>
-                <p class="price-area">Price: ${{ r.price_per_night }}/night</p>
-                <p>Number of Beds: {{ r.number_of_beds }}</p>
-                <!-- Additional Details -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque.</p>
-            </div>
-            <!-- Book Room Button -->
-            <a href="{% url 'room_type_detail' r.hotel.id room_type.id %}" class="book-room-btn btn palatin-btn">Book Room</a>
-
+ {% for room_type in room_types %}
+<div class="col-12 col-md-6 col-lg-4">
+    <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
+        <h4>{{ room_type.type }}</h4>
+        <div class="rooms-text">
+            <p>Capacity: {{ room_type.room_capacity }}</p>
+            <p class="price-area">Price: ${{ room_type.price_per_night }}/night</p>
+            <p>Number of Beds: {{ room_type.number_of_beds }}</p>
         </div>
+        <!-- Book Room Button -->
+        <a href="#" class="book-room-btn btn palatin-btn">Book Room</a>
     </div>
-    {% endfor %}
 </div>
+{% endfor %}
 
 
-
-
+</div>
 
 
             </div>

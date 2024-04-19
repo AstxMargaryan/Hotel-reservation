@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Hotels</title>
+</head>
+<body>
+    <h1>Available Hotels</h1>
+    {% if available_hotels %}
+        <ul>
+            {% for hotel in available_hotels %}
+                <li>
+                    <h2>{{ hotel.name }}</h2>
+                    <p>Location: {{ hotel.location }}</p>
+                    <p>Contact: {{ hotel.contact }}</p>
+                    <p>Available Room Types:</p>
+                    <ul>
+                        {% for room_type in hotel.room_types.all %}
+                            <li>{{ room_type.type }} - Price: ${{ room_type.price_per_night }}/night</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hotels available.</p>
+    {% endif %}
+</body>
+</html>

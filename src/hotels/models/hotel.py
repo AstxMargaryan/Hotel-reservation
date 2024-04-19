@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib import admin
-from .guest import Guest
+from .hotel_manager import HotelManager
 
 
 class Hotel(models.Model):
-    user = models.ForeignKey(Guest, on_delete=models.CASCADE)
+    user = models.ForeignKey(HotelManager, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
     address = models.CharField(max_length=255)
@@ -13,22 +13,15 @@ class Hotel(models.Model):
     email = models.EmailField()
     views = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
+    stars = models.IntegerField(default=0)
 
-
-    def __str__(self):
+    def str(self):
         return "{} ".format(self.name)
-
-    def hotel_room_types(self):
-        from .roomtype import RoomType
-        return RoomType.objects.filter(hotel=self)
 
 
 @admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['get_user_info', 'hotel_room_types', 'name', 'description', 'address', 'phone', 'email', 'views', 'date']
+    list_display = ['get_user_info',  'name', 'description', 'address', 'phone', 'email', 'views', 'date']
 
     def get_user_info(self, obj):
         return "{} {}".format(obj.user.user.first_name, obj.user.user.last_name)
-
-
-

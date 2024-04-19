@@ -16,22 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .api.guest import guest_register, guest_login
-from .api.index import index, choose_hotel
-from .api.hotel_manager import hotel_manager_register, hotel_manager_login
-from .api.hotel import get_hotel_list, hotel_detail, room_type_detail
-app_name = 'hotels'
+from .api.index import index, index2, home_page
+from .api.guest_register import guest_register
+from .api.hotel_manager_register import hotel_manager_register
+from .api.hotel import get_hotel_list, hotel_detail
+from .api.check_availability import check_room_availability
+
+
 urlpatterns = [
-    path('', index),
     path('admin/', admin.site.urls),
+    path('login/', index),
+    path('choose/role/', index2),
     path('guest/register/', guest_register),
-    path('api/guest/login', guest_login),
-    path('api/home/', choose_hotel),
     path('manager/register/', hotel_manager_register),
-    path('manager/login/', hotel_manager_login),
+    path('api/home/', home_page),
+    path('api/hotels/', get_hotel_list),
     path('api/hotels/', get_hotel_list),
     path('api/detail/<id>', hotel_detail, name="hotel_detail"),
-    path('api/detail/<int:hotel_id>/room_type/<int:room_type_id>/', room_type_detail, name='room_type_detail'),
+    path('check-room-availability/', check_room_availability, name='check_room_availability')
+
 
 
 ]

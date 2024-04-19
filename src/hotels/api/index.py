@@ -1,13 +1,19 @@
 from django.shortcuts import render
-from ..models.hotel import Hotel
 from .authentication import auth
-
+from django.http import HttpResponse
 
 def index(request):
+    return render(request, 'login.html')
+
+
+def index2(request):
     return render(request, 'firstpage.html')
 
 
-def choose_hotel(request):
-    is_auth, context = auth(request)
-    if is_auth:
-        return render(request, 'index.html', context)
+def home_page(request):
+
+        return render(request, 'index.html')
+
+
+
+
