@@ -8,7 +8,7 @@ from ..models.apikey import ApiKey
 def auth(obj):
     username = obj.session.get('username')
     api_key = obj.session.get('api_key')
-    is_auth = False  # Initialize as False until authenticated
+    is_auth = False
     context = {}
 
     if username is None or api_key is None:

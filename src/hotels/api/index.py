@@ -11,9 +11,11 @@ def index2(request):
 
 
 def home_page(request):
-
+    is_auth, context = auth(request)
+    if is_auth:
         return render(request, 'index.html')
-
+    else:
+        return HttpResponse("Authentication failed")
 
 
 
