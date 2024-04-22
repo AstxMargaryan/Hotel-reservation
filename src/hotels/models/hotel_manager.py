@@ -18,4 +18,4 @@ class HotelManagerAdmin(admin.ModelAdmin):
     list_display = ['get_user_info', 'hotel_name', 'hotel_address', 'contact_email']
 
     def get_user_info(self, obj):
-        return "{} {}".format(obj.user.first_name, obj.user.last_name)
+        return "{} {}".format(obj.user.first_name, obj.user.last_name, obj.user.username)

@@ -20,6 +20,6 @@ def hotel_manager_register(request):
         import random
         api_key = ''.join(random.choice(string.ascii_lowercase) for _ in range(16))
 
-        api_key_instance = ApiKey(manager=manager, api_key=api_key)
+        api_key_instance = ApiKey(user=user, api_key=api_key)
         api_key_instance.save()
         return HttpResponseRedirect('/login')

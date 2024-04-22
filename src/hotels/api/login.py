@@ -6,39 +6,32 @@ from ..models.guest import Guest
 from ..models.hotel_manager import HotelManager
 
 
-def login(request):
-    if request.method == "GET":
-        return render(request, 'guest_login.html')
-    else:
-        username = request.POST['username']
-        password = request.POST['password']
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Authenticate user
         user = authenticate(username=username, password=password)
 
-        if user:
-            try:
-                # Check if the user is a guest
+        if user is not None:
+            if Guest.objects.filter(user=user).exists():
                 guest = Guest.objects.get(user=user)
                 api_key = ApiKey.objects.get(user=guest)
                 request.session['username'] = user.username
                 request.session['api_key'] = api_key.api_key
-                return HttpResponseRedirect("/api/home/")
-            except Guest.DoesNotExist:
-                pass
-
-            try:
-                # Check if the user is a hotel manager
+                print("Guest authenticated")
+                return HttpResponseRedirect("/api/home")
+            elif HotelManager.objects.filter(user=user).exists():
                 hotel_manager = HotelManager.objects.get(user=user)
                 api_key = ApiKey.objects.get(user=hotel_manager)
                 request.session['username'] = user.username
                 request.session['api_key'] = api_key.api_key
-                return HttpResponseRedirect("/api/home/")
-            except HotelManager.DoesNotExist:
-                pass
-
-        # Authentication failed
-        return render(request, 'guest_login.html', {'error_message': 'Wrong username or password'})
-
-
-
-
-
+                print("Hotel manager authenticated")
+                return HttpResponseRedirect("/api/home")
+            else:
+                return render(request, 'login.html', {'error_message': 'User is not a guest or hotel manager.'})
+        else:
+            return render(request, 'login.html', {'error_message': 'Invalid credentials.'})
+    else:
+        return render(request, 'login.html')

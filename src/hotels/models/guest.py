@@ -19,4 +19,4 @@ class GuestAdmin(admin.ModelAdmin):
     list_display = ['get_user_info', 'address', 'phone_number', 'date_of_birth']
 
     def get_user_info(self, obj):
-        return "{} {}".format(obj.user.first_name, obj.user.last_name)
+        return "{} {}".format(obj.user.first_name, obj.user.last_name, obj.user.username)

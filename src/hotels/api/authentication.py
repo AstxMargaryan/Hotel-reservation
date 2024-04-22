@@ -1,31 +1,48 @@
 from ..models.guest import Guest
-from ..models.apikey import ApiKey
-from django.contrib.auth.models import User
-
-from ..models.guest import Guest
+from ..models.hotel_manager import HotelManager
 from ..models.apikey import ApiKey
 
-def auth(obj):
-    username = obj.session.get('username')
-    api_key = obj.session.get('api_key')
-    is_auth = False
-    context = {}
 
-    if username is None or api_key is None:
-        context = {'error': 'Username or API Key not found in session'}
-    else:
+def auth(request):
+    username = request.session.get('username')
+    api_key = request.session.get('api_key')
+    context = {'is_auth': False}
+
+    if not username:
+        context['error'] = 'Username not provided in session'
+        return context
+
+    if not api_key:
+        context['error'] = 'API key not provided in session'
+        return context
+
+    try:
+        guest = Guest.objects.get(user__username=username)
+        apk = ApiKey.objects.get(user=guest.user, api_key=api_key)
+        context.update({
+            'is_auth': True,
+            'name': f"{guest.user.first_name} {guest.user.last_name}",
+            'username': username,
+            'user_id': guest.id,
+            'is_guest': True,
+            'is_hotel_manager': False
+        })
+    except (Guest.DoesNotExist, ApiKey.DoesNotExist) as e:
+        print("Error during guest authentication:", e)
+
+    if not context['is_auth']:
         try:
-            guest = Guest.objects.get(user__username=username)
-            apk = ApiKey.objects.get(user=guest, api_key=api_key)
-            context = {
-                'name': "{} {}".format(guest.user.first_name, guest.user.last_name),
+            hotel_manager = HotelManager.objects.get(user__username=username)
+            apk = ApiKey.objects.get(user=hotel_manager.user, api_key=api_key)
+            context.update({
+                'is_auth': True,
+                'name': f"{hotel_manager.user.first_name} {hotel_manager.user.last_name}",
                 'username': username,
-                'user_id': guest.id
-            }
-            is_auth = True
-        except Guest.DoesNotExist:
-            context = {'error': 'User not found with given username'}
-        except ApiKey.DoesNotExist:
-            context = {'error': 'ApiKey does not match'}
+                'user_id': hotel_manager.id,
+                'is_guest': False,
+                'is_hotel_manager': True
+            })
+        except (HotelManager.DoesNotExist, ApiKey.DoesNotExist) as e:
+            print("Error during hotel manager authentication:", e)
 
-    return is_auth, context
+    return context

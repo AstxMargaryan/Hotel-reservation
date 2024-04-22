@@ -21,7 +21,7 @@ def guest_register(request):
         import random
         api_key = ''.join(random.choice(string.ascii_lowercase) for _ in range(16))
 
-        api_key_instance = ApiKey(guest=guest, api_key=api_key)
+        api_key_instance = ApiKey(user=user, api_key=api_key)
         api_key_instance.save()
         return HttpResponseRedirect('/login')
 

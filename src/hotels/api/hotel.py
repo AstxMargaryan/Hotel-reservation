@@ -13,9 +13,17 @@ def hotel_detail(request, id):
     try:
         hotel = Hotel.objects.get(id=id)
         room_types = RoomType.objects.filter(hotel=hotel)
-        context = {'hotel': hotel, 'room_types': room_types}
+        id = request.GET.get('hotel_id')
+        checkin = request.GET.get('checkin')
+        checkout = request.GET.get('checkout')
+        adults = request.GET.get('adults')
+        children = request.GET.get('children')
+        context = {'hotel': hotel,
+                   'room_types': room_types,
+                   'checkin': checkin,
+                   'checkout': checkout,
+                   'adults': adults,
+                   'children': children}
         return render(request, 'hotel_detail.html', context)
     except Hotel.DoesNotExist:
         return render(request, 'hotel_not_found.html')
-
-

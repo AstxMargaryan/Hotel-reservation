@@ -136,73 +136,49 @@
     <!-- ##### Breadcumb Area End ##### -->
 
     <!-- ##### Book Now Area Start ##### -->
-    <div class="book-now-area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10">
-                    <div class="book-now-form">
-                        <form action="#">
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label for="select1">Check In</label>
-                                <select class="form-control" id="select1">
-                                  <option>19 June</option>
-                                  <option>20 June</option>
-                                  <option>21 June</option>
-                                  <option>22 June</option>
-                                  <option>23 June</option>
-                                  <option>24 June</option>
-                                  <option>25 June</option>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Check Hotel Availability</h2>
+                    <form action="{% url 'check_hotel_availability' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="check_in">Check In:</label>
+                                <input type="date" id="check_in" name="check_in" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="check_out">Check Out:</label>
+                                <input type="date" id="check_out" name="check_out" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="adults">Adults:</label>
+                                <select id="adults" name="adults" class="form-control" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
                                 </select>
                             </div>
-
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label for="select2">Check Out</label>
-                                <select class="form-control" id="select2">
-                                  <option>20 June</option>
-                                  <option>21 June</option>
-                                  <option>22 June</option>
-                                  <option>23 June</option>
-                                  <option>24 June</option>
-                                  <option>25 June</option>
-                                  <option>26 June</option>
-                                  <option>27 June</option>
+                            <div class="form-group col-md-3">
+                                <label for="children">Children:</label>
+                                <select id="children" name="children" class="form-control" required>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
-
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label for="select3">Adults</label>
-                                <select class="form-control" id="select3">
-                                  <option>02</option>
-                                  <option>03</option>
-                                  <option>04</option>
-                                  <option>05</option>
-                                  <option>06</option>
-                                </select>
-                            </div>
-
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label for="select4">Childrens</label>
-                                <select class="form-control" id="select4">
-                                  <option>01</option>
-                                  <option>02</option>
-                                  <option>03</option>
-                                  <option>04</option>
-                                  <option>05</option>
-                                </select>
-                            </div>
-
-                            <!-- Button -->
-                            <button type="submit">Book Now</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Check Availability</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- ##### Book Now Area End ##### -->
 
     <!-- ##### Rooms Area Start ##### -->
@@ -221,20 +197,32 @@
 
 <!-- Inside the rooms area section -->
 <div class="row">
- {% for room_type in room_types %}
-<div class="col-12 col-md-6 col-lg-4">
-    <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
-        <h4>{{ room_type.type }}</h4>
-        <div class="rooms-text">
-            <p>Capacity: {{ room_type.room_capacity }}</p>
-            <p class="price-area">Price: ${{ room_type.price_per_night }}/night</p>
-            <p>Number of Beds: {{ room_type.number_of_beds }}</p>
+    {% for room_type in room_types %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
+            <h4>{{ room_type.type }}</h4>
+            <div class="rooms-text">
+                <p>Capacity: {{ room_type.room_capacity }}</p>
+                <p class="price-area">Price: ${{ room_type.price_per_night }}/night</p>
+                <p>Number of Beds: {{ room_type.number_of_beds }}</p>
+            </div>
+            <!-- Book Room Button -->
+            <a href="#" class="book-room-btn btn palatin-btn">Book Room</a>
         </div>
-        <!-- Book Room Button -->
-        <a href="#" class="book-room-btn btn palatin-btn">Book Room</a>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
+
+<!-- Place these input fields where you need them -->
+<input type="text" value="{{ hotel.id }}" id="h_id">
+<input type="text" value="{{ hotel.name }}" id="hotel_name">
+<input type="text" value="{{ room_types.0.type }}" id="room_name">
+<input type="text" value="{{ room_types.0.price_per_night }}" id="room_price">
+<input type="text" value="{{ room_types.0.id }}" id="room_type">
+<input type="text" value="{{ checkin }}" id="checkin">
+<input type="text" value="{{ checkout }}" id="checkout">
+<input type="text" value="{{ adults }}" id="adults">
+<input type="text" value="{{ children }}" id="children">
 
 
 </div>
