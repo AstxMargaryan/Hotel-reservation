@@ -17,7 +17,6 @@ def home_page(request):
     username = request.session.get('username')
     api_key = request.session.get('api_key')
     print("Session data h:", request.session)
-
     print("Username from session h:", username)
     print("API key from session:", api_key)
     is_auth, context = auth(request)
