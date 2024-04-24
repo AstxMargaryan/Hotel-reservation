@@ -63,7 +63,7 @@
 <body>
     <div class="container">
         <h1 style="color: #007bff;">Login</h1>
-        <form action="/api/home/" method="post">
+        <form action="/login/" method="post">
             {% csrf_token %}
             <legend><h2>Please fill username and password</h2></legend>
             {% if error_message %}

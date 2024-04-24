@@ -16,16 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .api.index import index, index2, home_page
+from .api.index import  index2, home_page
 from .api.guest_register import guest_register
 from .api.hotel_manager_register import hotel_manager_register
 from .api.hotel import get_hotel_list, hotel_detail
 from .api.check_availability import check_hotel_availability, add_to_selection
-
+from .api.login import login_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', index),
+    path('login/', login_view),
     path('choose/role/', index2),
     path('guest/register/', guest_register),
     path('manager/register/', hotel_manager_register),

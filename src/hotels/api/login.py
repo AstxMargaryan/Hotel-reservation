@@ -15,20 +15,11 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         print(user)
         if user:
-            if Guest.objects.filter(user=user).exists():
-                guest = Guest.objects.get(user=user)
-                api_key = ApiKey.objects.get(user=guest)
+            if Guest.objects.filter(user=user).exists() or HotelManager.objects.filter(user=user).exists():
+                api_key = ApiKey.objects.get(user=user)
                 request.session['username'] = user.username
                 request.session['api_key'] = api_key.api_key
-                print(request.session.get(['username']))
-                print("Guest authenticated", request.session.get(['username']))
-                return HttpResponseRedirect("/api/home")
-            elif HotelManager.objects.filter(user=user).exists():
-                hotel_manager = HotelManager.objects.get(user=user)
-                api_key = ApiKey.objects.get(user=hotel_manager)
-                request.session['username'] = user.username
-                request.session['api_key'] = api_key.api_key
-                print("Hotel manager authenticated ", request.session.get(['username']))
+                print("Guest authenticated", request.session.get('username'))
                 return HttpResponseRedirect("/api/home")
             else:
                 return render(request, 'login.html', {'error_message': 'User is not a guest or hotel manager.'})
