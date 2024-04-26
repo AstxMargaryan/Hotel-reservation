@@ -21,17 +21,17 @@ def hotel_detail(request, id):
         try:
             hotel = Hotel.objects.get(id=id)
             room_types = RoomType.objects.filter(hotel=hotel)
-            id = request.GET.get('hotel_id')
-            checkin = request.GET.get('checkin')
-            checkout = request.GET.get('checkout')
-            adults = request.GET.get('adults')
-            children = request.GET.get('children')
-            context = {'hotel': hotel,
-                       'room_types': room_types,
-                       'checkin': checkin,
-                       'checkout': checkout,
-                       'adults': adults,
-                       'children': children}
+            user_id = context.get('user_id')
+            context = {
+                'hotel': hotel,
+                'room_types': room_types,
+                'user_id': user_id
+            }
+
+
+            print(f"User ID: {request.user.id}")
+            print(f"Is Authenticated: {request.user.is_authenticated}")
+
             return render(request, 'hotel_detail.html', context)
         except Hotel.DoesNotExist:
             return render(request, 'hotel_not_found.html')

@@ -20,21 +20,22 @@ from .api.index import  index2, home_page
 from .api.guest_register import guest_register
 from .api.hotel_manager_register import hotel_manager_register
 from .api.hotel import get_hotel_list, hotel_detail
-from .api.check_availability import check_hotel_availability, add_to_selection
-from .api.login import login_view
+from .api.check_availability import check_hotel_availability
+from .api.login import login_view, log_out
+from .api.booking import booking
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_view),
+    path('logout', log_out),
     path('choose/role/', index2),
     path('guest/register/', guest_register),
     path('manager/register/', hotel_manager_register),
     path('api/home/', home_page),
-    path('api/hotels/', get_hotel_list),
     path('api/hotels/', get_hotel_list, name = 'hotel_list'),
     path('api/detail/<id>', hotel_detail, name="hotel_detail"),
     path('check-room-availability/', check_hotel_availability, name='check_hotel_availability'),
-    path('add_to_selection', add_to_selection)
+    path('api/booking/', booking)
 
 
 

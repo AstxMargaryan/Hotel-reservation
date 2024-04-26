@@ -39,7 +39,8 @@ class Booking(models.Model):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['get_user_info', 'total', 'total', 'payment_status']
+    list_display = ['full_name', 'total', 'check_in_date', 'check_out_date', 'total_days', 'num_adults', 'num_children',
+                    'hotel', 'room_type', 'payment_status']
 
     def get_user_info(self, obj):
         return "{} {}".format(obj.user.first_name, obj.user.last_name, obj.user.username)

@@ -136,66 +136,70 @@
     <!-- ##### Breadcumb Area End ##### -->
 
     <!-- ##### Book Now Area Start ##### -->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Check Hotel Availability</h2>
-                    <form action="{% url 'check_hotel_availability' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="check_in">Check In:</label>
-                                <input type="date" id="check_in" name="check_in" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="check_out">Check Out:</label>
-                                <input type="date" id="check_out" name="check_out" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="adults">Adults:</label>
-                                <select id="adults" name="adults" class="form-control" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="children">Children:</label>
-                                <select id="children" name="children" class="form-control" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Check Availability</button>
-                    </form>
-                </div>
-            </div>
+
+{% if error_message %}
+<div class="alert alert-danger" role="alert">
+    {{ error_message }}
+</div>
+{% endif %}
+
+
+<!-- Booking form -->
+<form method="post" action="/api/booking/" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <input type="hidden" name="user_id" value="{{ user_id }}">
+    <input type="hidden" name="hotel_id" value="{{ hotel.id }}">
+
+    <!-- Your form inputs here -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="check_in_date" class="form-label">Check-in Date:</label>
+            <input type="date" class="form-control" id="check_in_date" name="check_in_date" required>
+        </div>
+        <div class="col-md-4">
+            <label for="check_out_date" class="form-label">Check-out Date:</label>
+            <input type="date" class="form-control" id="check_out_date" name="check_out_date" required>
+        </div>
+        <div class="col-md-4">
+            <label for="num_adults" class="form-label">Adults:</label>
+            <input type="number" class="form-control" id="num_adults" name="num_adults" value="1" min="1" required>
         </div>
     </div>
-</div>
-    <!-- ##### Book Now Area End ##### -->
 
-    <!-- ##### Rooms Area Start ##### -->
-    <section class="rooms-area section-padding-0-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <div class="section-heading text-center">
-                        <div class="line-"></div>
-                        <!-- Hotel Name -->
-                        <p>{{hotel.description}}</p>
-                    </div>
-                </div>
-            </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="num_children" class="form-label">Children:</label>
+            <input type="number" class="form-control" id="num_children" name="num_children" value="0" min="0" required>
+        </div>
+        <div class="col-md-4">
+            <label for="full_name" class="form-label">Full Name:</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" required>
+        </div>
+        <div class="col-md-4">
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+    </div>
 
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="col-md-6">
+            <label for="room_type" class="form-label">Room Type:</label>
+            <select name="room_type_id" id="room_type" class="form-select" required>
+                {% for room_type in room_types %}
+                <option value="{{ room_type.id }}">{{ room_type.type }} - ${{ room_type.price_per_night }}/night</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
 
-<!-- Inside the rooms area section -->
+    <button type="submit" class="btn btn-primary">Book Now</button>
+</form>
+
+<!-- Room type loop -->
 <div class="row">
     {% for room_type in room_types %}
     <div class="col-12 col-md-6 col-lg-4">
@@ -205,27 +209,17 @@
                 <p>Capacity: {{ room_type.room_capacity }}</p>
                 <p class="price-area">Price: ${{ room_type.price_per_night }}/night</p>
                 <p>Number of Beds: {{ room_type.number_of_beds }}</p>
+                <input type="text" name="room_type_id" value="{{ room_type.id }}">
             </div>
-            <!-- Book Room Button -->
-            <a href="#" class="book-room-btn btn palatin-btn">Book Room</a>
         </div>
     </div>
     {% endfor %}
 </div>
 
+
+
 <!-- Place these input fields where you need them -->
-<input type="text" value="{{ hotel.id }}" id="h_id">
-<input type="text" value="{{ hotel.name }}" id="hotel_name">
-<input type="text" value="{{ room_types.0.type }}" id="room_name">
-<input type="text" value="{{ room_types.0.price_per_night }}" id="room_price">
-<input type="text" value="{{ room_types.0.id }}" id="room_type">
-<input type="text" value="{{ checkin }}" id="checkin">
-<input type="text" value="{{ checkout }}" id="checkout">
-<input type="text" value="{{ adults }}" id="adults">
-<input type="text" value="{{ children }}" id="children">
 
-
-</div>
 
 
             </div>
