@@ -9,6 +9,7 @@ class Guest(models.Model):
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=30)
     date_of_birth = models.DateField(default=datetime.date.today)
+    email = models.EmailField(max_length=30,default='')
 
     def __str__(self):
         return "{} - {} - {} - {}".format(self.user.username, self.address, self.phone_number, self.date_of_birth)

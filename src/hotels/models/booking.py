@@ -16,7 +16,7 @@ class Booking(models.Model):
         ('unpaid', 'unpaid'),
         ('expired', 'expired')
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     payment_status = models.CharField(max_length=50, choices=PAYMENT_STATUS)
     full_name = models.CharField(max_length=200)
     phone = models.CharField(max_length=30)
@@ -39,8 +39,14 @@ class Booking(models.Model):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'total', 'check_in_date', 'check_out_date', 'total_days', 'num_adults', 'num_children',
-                    'hotel', 'room_type', 'payment_status']
+    list_display = ['full_name', 'phone', 'email', 'total', 'check_in_date', 'check_out_date', 'total_days', 'num_adults', 'num_children',
+                    'hotel_name', 'room_type_name', 'payment_status']
 
     def get_user_info(self, obj):
         return "{} {}".format(obj.user.first_name, obj.user.last_name, obj.user.username)
+
+    def room_type_name(self, obj):
+        return "{}".format(obj.room_type.type)
+
+    def hotel_name(self, obj):
+        return "{}".format(obj.hotel.name)

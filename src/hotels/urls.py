@@ -22,7 +22,9 @@ from .api.hotel_manager_register import hotel_manager_register
 from .api.hotel import get_hotel_list, hotel_detail
 from .api.check_availability import check_hotel_availability
 from .api.login import login_view, log_out
-from .api.booking import booking
+from .api.booking import booking, booking_success
+from .api.profile import profile, user_bookings
+from .api.hotel_manager import add_hotel_page, create_hotel, my_hotels
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,10 +34,16 @@ urlpatterns = [
     path('guest/register/', guest_register),
     path('manager/register/', hotel_manager_register),
     path('api/home/', home_page),
-    path('api/hotels/', get_hotel_list, name = 'hotel_list'),
+    path('api/hotels/', get_hotel_list, name='hotel_list'),
     path('api/detail/<id>', hotel_detail, name="hotel_detail"),
     path('check-room-availability/', check_hotel_availability, name='check_hotel_availability'),
-    path('api/booking/', booking)
+    path('api/booking/', booking, name="booking"),
+    path('api/booking/success', booking_success),
+    path('api/profile/', profile, name='profile'),
+    path('api/user/bookings/', user_bookings, name='guest_bookings'),
+    path('api/add/hotel/page/', add_hotel_page, name='add_hotel_page'),
+    path('api/create/hotel', create_hotel, name='create_hotel'),
+    path('api/my/hotels', my_hotels, name='my_hotels')
 
 
 

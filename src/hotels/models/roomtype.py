@@ -10,6 +10,7 @@ class RoomType(models.Model):
     number_of_beds = models.PositiveIntegerField(default=0)
     room_capacity = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
+    room_count = models.PositiveIntegerField(default=0)
 
     def str(self):
         return "{} {} {} {}".format(self.type, self.price_per_night, self.number_of_beds, self.room_capacity)
@@ -17,7 +18,7 @@ class RoomType(models.Model):
 
 @admin.register(RoomType)
 class RoomTypeAdmin(admin.ModelAdmin):
-    list_display = ['hotel_info', 'type', 'price_per_night', 'number_of_beds', 'room_capacity', 'is_available']
+    list_display = ['hotel_info', 'type', 'price_per_night', 'number_of_beds', 'room_count', 'room_capacity', 'is_available']
 
     def hotel_info(self, obj):
         return "{} {}".format(obj.hotel.name, obj.hotel.address)

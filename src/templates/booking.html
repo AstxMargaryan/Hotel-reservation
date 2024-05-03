@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>The Palatin - Hotel &amp; Resort Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="http://localhost:8000/static/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="http://localhost:8000/static/style.css">
+
+
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="cssload-container">
+            <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="palatin-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="palatinNav">
+
+                        <!-- Nav brand -->
+                        <a href="index.html" class="nav-brand"><img src="http://localhost:8000/static/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li class="active"><a href="/api/home/">Home</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/api/home">Home</a></li>
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="/api/profile/">Profile</a></li>
+                                            <li><a href="/api/hotels/">Hotels</a></li>
+                                            <li><a href="blog.html">News</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="elements.html">Elements</a></li>
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Mega Menu</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="/api/home">Home</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="/api/profile/">Profile</a></li>
+                                                <li><a href="/api/hotels/">Hotels</a></li>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="elements.html">Elements</a></li>
+                                                <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </li>
+                                    <li><a href="#">Profile</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/api/profile/">Profile</a></li>
+                                            <li><a href ="/api/user/bookings/">Bookings</a></li>
+                                            {% if is_hotel_manager %}
+                                                <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
+                                                <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
+                                            {% endif %}
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <div class="menu-btn">
+                                    </div>
+
+                                </ul>
+
+                                <!-- Button -->
+                                <div class="menu-btn">
+                                    <a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a>
+                                </div>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(http://localhost:8000/static/img/bg-img/bg-6.jpg);">
+        <div class="bradcumbContent">
+            <h2>Final step</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- Custom Styles -->
+    <style>
+.profile-container {
+    margin-top: 50px;
+}
+
+.profile-info {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.profile-form {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mb-4">Booking Form</h2>
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+        <form id="booking-form" method="post" action="{% url 'booking' %}">
+            {% csrf_token %}
+            <input type="text" name="user_id" value="{{ user_id }}" hidden>
+            <input type="text" name="hotel_id" value="{{ hotel.id }}" hidden>
+            <input type="text" name="room_type_id" value="{{ room_type.id }}" hidden>
+
+            <!-- Booking Details -->
+            <div class="form-group">
+                <label for="check_in_date">Check-in Date:</label>
+                <input type="date" class="form-control" id="check_in_date" name="check_in_date" required>
+            </div>
+            <div class="form-group">
+                <label for="check_out_date">Check-out Date:</label>
+                <input type="date" class="form-control" id="check_out_date" name="check_out_date" required>
+            </div>
+
+            <!-- Number of Adults and Children -->
+            <div class="form-group">
+                <label for="num_adults">Adults:</label>
+                <input type="number" class="form-control" id="num_adults" name="num_adults" value="1" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="num_children">Children:</label>
+                <input type="number" class="form-control" id="num_children" name="num_children" value="0" min="0" required>
+            </div>
+
+            <!-- Guest Information -->
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ email|default_if_none:"" }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" value="{{ phone|default_if_none:"" }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ address|default_if_none:"" }}" required>
+            </div>
+
+
+
+
+            <!-- Payment Information -->
+            <div class="form-group">
+                <label for="card_number">Card Number:</label>
+                <input type="text" class="form-control" id="card_number" name="card_number" required>
+            </div>
+
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+<!-- ##### Book Now Area End ##### -->
+
+    <!-- ##### Book Now Area End ##### -->
+
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="http://localhost:8000/static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="http://localhost:8000/static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="http://localhost:8000/static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="http://localhost:8000/static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="http://localhost:8000/static/js/active.js"></script>
+</body>
+
+</html>

@@ -21,7 +21,7 @@ class Hotel(models.Model):
 
 @admin.register(Hotel)
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['get_user_info',  'name', 'description', 'address', 'phone', 'email', 'views', 'date']
+    list_display = ['get_user_info',  'name', 'description', 'address', 'phone', 'email', 'views', 'date', 'stars']
 
     def get_user_info(self, obj):
         return "{} {}".format(obj.user.user.first_name, obj.user.user.last_name)

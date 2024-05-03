@@ -17,9 +17,11 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="http://localhost:8000/static/style.css">
 
+
 </head>
 
 <body>
+
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="cssload-container">
@@ -37,7 +39,7 @@
                     <nav class="classy-navbar justify-content-between" id="palatinNav">
 
                         <!-- Nav brand -->
-                        <a href="/api/home/" class="nav-brand"><img src="http://localhost:8000/static/img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand"><img src="http://localhost:8000/static/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -56,66 +58,59 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/api/home/">Home</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a></li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="/api/home/">Home</a></li>
+                                            <li><a href="/api/home">Home</a></li>
                                             <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="/api/profile/">Profile</a></li>
                                             <li><a href="/api/hotels/">Hotels</a></li>
-                                            <li><a href="rooms.html">Rooms</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
+                                            {% if is_auth %}
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li><a href="#">Mega Menu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="/api/home/">Home</a></li>
+                                                <li><a href="/api/home">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="/api/profile/">Profile</a></li>
                                                 <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="/api/home/">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="/api/home/">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="/api/home/">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
+                                                {% if is_auth %}
+                                                    <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="/api/hotels/">Hotels</a></li>
                                     <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li>
+                                        {% if is_auth %}
+                                            <a href="/api/profile/">Profile</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/api/profile/">Profile</a></li>
+                                                <li><a href="/api/user/bookings/">Bookings</a></li>
+                                                {% if is_hotel_manager %}
+                                                    <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
+                                                    <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
+                                                {% endif %}
+                                                <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                            </ul>
+                                        {% else %}
+                                            <a href="/login" class="btn palatin-btn">Login</a>
+                                        {% endif %}
+                                    </li>
+
                                 </ul>
 
-                                <!-- Button -->
-                                <div class="menu-btn">
-                                    <a href="#" class="btn palatin-btn">Make a Reservation</a>
-                                </div>
 
                             </div>
                             <!-- Nav End -->
@@ -137,69 +132,23 @@
 
     <!-- ##### Book Now Area Start ##### -->
 
-{% if error_message %}
-<div class="alert alert-danger" role="alert">
-    {{ error_message }}
-</div>
-{% endif %}
+    <!-- ##### Book Now Area End ##### -->
+
+    <!-- ##### Rooms Area Start ##### -->
+    <section class="rooms-area section-padding-0-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <div class="section-heading text-center">
+                        <div class="line-"></div>
+                        <!-- Hotel Name -->
+                        <p>{{hotel.description}}</p>
+                    </div>
+                </div>
+            </div>
 
 
-<!-- Booking form -->
-<form method="post" action="/api/booking/" class="needs-validation" novalidate>
-    {% csrf_token %}
-    <input type="hidden" name="user_id" value="{{ user_id }}">
-    <input type="hidden" name="hotel_id" value="{{ hotel.id }}">
-
-    <!-- Your form inputs here -->
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <label for="check_in_date" class="form-label">Check-in Date:</label>
-            <input type="date" class="form-control" id="check_in_date" name="check_in_date" required>
-        </div>
-        <div class="col-md-4">
-            <label for="check_out_date" class="form-label">Check-out Date:</label>
-            <input type="date" class="form-control" id="check_out_date" name="check_out_date" required>
-        </div>
-        <div class="col-md-4">
-            <label for="num_adults" class="form-label">Adults:</label>
-            <input type="number" class="form-control" id="num_adults" name="num_adults" value="1" min="1" required>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <label for="num_children" class="form-label">Children:</label>
-            <input type="number" class="form-control" id="num_children" name="num_children" value="0" min="0" required>
-        </div>
-        <div class="col-md-4">
-            <label for="full_name" class="form-label">Full Name:</label>
-            <input type="text" class="form-control" id="full_name" name="full_name" required>
-        </div>
-        <div class="col-md-4">
-            <label for="phone" class="form-label">Phone:</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="col-md-6">
-            <label for="room_type" class="form-label">Room Type:</label>
-            <select name="room_type_id" id="room_type" class="form-select" required>
-                {% for room_type in room_types %}
-                <option value="{{ room_type.id }}">{{ room_type.type }} - ${{ room_type.price_per_night }}/night</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Book Now</button>
-</form>
-
-<!-- Room type loop -->
+<!-- Inside the rooms area section -->
 <div class="row">
     {% for room_type in room_types %}
     <div class="col-12 col-md-6 col-lg-4">
@@ -209,17 +158,31 @@
                 <p>Capacity: {{ room_type.room_capacity }}</p>
                 <p class="price-area">Price: ${{ room_type.price_per_night }}/night</p>
                 <p>Number of Beds: {{ room_type.number_of_beds }}</p>
-                <input type="text" name="room_type_id" value="{{ room_type.id }}">
+                <input type="hidden" name="room_type_id" value="{{ room_type.id }}">
+                <button type="button" class="btn btn-primary book-btn">Book Now</button>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
-
-
+</div>
 
 <!-- Place these input fields where you need them -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bookButtons = document.querySelectorAll('.book-btn');
+        bookButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const roomTypeId = this.parentNode.querySelector('input[name="room_type_id"]').value;
+                const hotelId = "{{ hotel.id }}"; // Assuming hotel.id is available in the template
+                window.location.href = `/api/booking/?hotel_id=${hotelId}&room_type_id=${roomTypeId}`;
+            });
+        });
+    });
+</script>
 
+
+</div>
 
 
             </div>

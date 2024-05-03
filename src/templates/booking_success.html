@@ -4,11 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Booking Successful</h1>
-    <p>Your booking has been successfully created.</p>
-    <!-- You can add more content here, such as a link to go back to the homepage or view the booking details -->
+    <div class="container">
+        <img src="http://localhost:8000/static/img/bg-img/done.png " alt="Booking Successful" class="image">
+        <h1>Booking Successful</h1>
+        <p>Your booking has been successfully created.</p>
+        <a href="/api/home">Home page</a>
+    </div>
 </body>
 </html>
- <a href="/api/home">Home page</a>
+
+
+
+
+
+
+
+

@@ -57,76 +57,66 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li class="active"><a href="/api/home/">Home</a></li>
+                                    <li><a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a></li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="/api/home">Home</a></li>
                                             <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="/api/profile/">Profile</a></li>
                                             <li><a href="/api/hotels/">Hotels</a></li>
-                                            <li><a href="rooms.html">Rooms</a></li>
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
+                                            {% if is_auth %}
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li><a href="#">Mega Menu</a>
                                         <div class="megamenu">
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="/api/home">Home</a></li>
                                                 <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="/api/profile/">Profile</a></li>
                                                 <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="/api/hotels/">Hotels</a></li>
-                                                <li><a href="rooms.html">Rooms</a></li>
-                                                <li><a href="blog.html">News</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-
+                                                {% if is_auth %}
+                                                    <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="/api/hotels/">Hotels</a></li>
                                     <li><a href="contact.html">Contact</a></li>
-                                    <div class="menu-btn">
-                                    <a href="/logout" class="btn palatin-btn">Log out</a>
-                                    </div>
-
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li>
+                                        {% if is_auth %}
+                                            <a href="/api/profile/">Profile</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/api/profile/">Profile</a></li>
+                                                <li><a href="/api/user/bookings/">Bookings</a></li>
+                                                {% if is_hotel_manager %}
+                                                    <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
+                                                    <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
+                                                {% endif %}
+                                                <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
+                                            </ul>
+                                        {% else %}
+                                            <a href="/login" class="btn palatin-btn">Login</a>
+                                        {% endif %}
+                                    </li>
+                                        </ul>
+                                    </li>
                                 </ul>
+                            </div>
 
-                                <!-- Button -->
-                                <div class="menu-btn">
-                                    <a href="#" class="btn palatin-btn">Make a Reservation</a>
-                                </div>
 
                             </div>
                             <!-- Nav End -->
-                        </div>
+
                     </nav>
                 </div>
             </div>

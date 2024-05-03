@@ -58,8 +58,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/api/home/">Home</a></li>
-                                    <li><a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a></li>
-                                    <li><a href="/api/hotels/">Hotels</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="/api/home">Home</a></li>
@@ -69,9 +68,7 @@
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
-                                            {% if is_auth %}
                                             <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
-                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li><a href="#">Mega Menu</a>
@@ -84,35 +81,36 @@
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
-                                                {% if is_auth %}
-                                                    <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
-                                                {% endif %}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li>
-                                        {% if is_auth %}
-                                            <a href="/api/profile/">Profile</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/api/profile/">Profile</a></li>
-                                                <li><a href="/api/user/bookings/">Bookings</a></li>
-                                                {% if is_hotel_manager %}
-                                                    <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
-                                                    <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
-                                                {% endif %}
                                                 <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
                                             </ul>
-                                        {% else %}
-                                            <a href="/login" class="btn palatin-btn">Login</a>
-                                        {% endif %}
+                                        </div>
+
                                     </li>
+                                    <li><a href="#">Profile</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/api/profile/">Profile</a></li>
+                                            <li><a href ="/api/user/bookings/">Bookings</a></li>
+                                            {% if hotel_manager %}
+                                                <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
+                                                <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
+                                            {% endif %}
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <div class="menu-btn">
+                                    </div>
 
+                                </ul>
+
+                                <!-- Button -->
+                                <div class="menu-btn">
+                                    <a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a>
+                                </div>
+
+                            </div>
                             <!-- Nav End -->
-                        </div>
                         </div>
                     </nav>
                 </div>
@@ -124,94 +122,88 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(http://localhost:8000/static/img/bg-img/bg-6.jpg);">
         <div class="bradcumbContent">
-            <h2>Hotels</h2>
+            <h2>Personal details</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
+    <!-- Custom Styles -->
+    <style>
+.profile-container {
+    margin-top: 50px;
+}
 
-    <!-- ##### Book Now Area Start ##### -->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Check Hotel Availability</h2>
-                    <form action="{% url 'check_hotel_availability' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="check_in">Check In:</label>
-                                <input type="date" id="check_in" name="check_in" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="check_out">Check Out:</label>
-                                <input type="date" id="check_out" name="check_out" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="adults">Adults:</label>
-                                <select id="adults" name="adults" class="form-control" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="children">Children:</label>
-                                <select id="children" name="children" class="form-control" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Check Availability</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+.profile-info {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.profile-form {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- Profile Content Section -->
+ <div class="container">
+    {% if guest %}
+        <h1>{{ guest.user.get_full_name }}</h1>
+    {% elif hotel_manager %}
+        <h1>{{ hotel_manager.user.get_full_name }}</h1>
+    {% endif %}
+
+    <h2>Bookings</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                <strong>Hotel:</strong> {{booking.hotel.name}}
+                <br>
+                <strong>Room:</strong> {{ booking.room_type.type }}
+                <br>
+                <strong>Check-in:</strong> {{ booking.check_in_date }}
+                <br>
+                <strong>Check-out:</strong> {{ booking.check_out_date }}
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 
-    <!-- ##### Book Now Area End ##### -->
-
-    <!-- ##### Rooms Area Start ##### -->
-    <section class="rooms-area section-padding-0-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <div class="section-heading text-center">
-                        <div class="line-"></div>
-                        <h2>Choose a hotel</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% for h in hotels %}
-                <!-- Single Rooms Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Thumbnail -->
-                        <div class="bg-thumbnail bg-img" style="background-image: url('#');"></div>
-                        <!-- Price -->
-                        <p class="price-from">{{ h.name }}</p>
-                        <!-- Rooms Text -->
-                        <div class="rooms-text">
-                            <div class="line"></div>
-                            <h4>{{ h.name }}</h4>
-                            <p>{{ h.description }}</p>
-                        </div>
-                        <!-- Book Room -->
-                        <a href="{% url 'hotel_detail' h.id %}" class="book-room-btn btn palatin-btn">Book now</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-    <!-- ##### Rooms Area End ##### -->
+    <!-- End Profile Content Section -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">

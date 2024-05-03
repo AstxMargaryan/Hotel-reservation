@@ -24,7 +24,7 @@ def login_view(request):
                 return render(request, 'login.html', {'error_message': 'User is not a guest or hotel manager.'})
         else:
             print("Authentication failed.")
-            return render(request, 'login.html', {'error_message': 'Invalid credentials.'})
+            return render(request, 'login.html', {'error_message': 'Wrong username or password'})
     else:
         return render(request, 'login.html')
 

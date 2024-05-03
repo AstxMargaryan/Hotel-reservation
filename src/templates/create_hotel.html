@@ -58,8 +58,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/api/home/">Home</a></li>
-                                    <li><a href="/api/hotels" class="btn palatin-btn">Make a Reservation</a></li>
-                                    <li><a href="/api/hotels/">Hotels</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="/api/home">Home</a></li>
@@ -69,9 +68,7 @@
                                             <li><a href="blog.html">News</a></li>
                                             <li><a href="contact.html">Contact</a></li>
                                             <li><a href="elements.html">Elements</a></li>
-                                            {% if is_auth %}
                                             <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
-                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li><a href="#">Mega Menu</a>
@@ -84,35 +81,34 @@
                                                 <li><a href="blog.html">News</a></li>
                                                 <li><a href="contact.html">Contact</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
-                                                {% if is_auth %}
-                                                    <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
-                                                {% endif %}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li>
-                                        {% if is_auth %}
-                                            <a href="/api/profile/">Profile</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/api/profile/">Profile</a></li>
-                                                <li><a href="/api/user/bookings/">Bookings</a></li>
-                                                {% if is_hotel_manager %}
-                                                    <li><a href="/api/add/hotel/page" class="btn palatin-btn">Add Hotel</a></li>
-                                                    <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
-                                                {% endif %}
                                                 <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
                                             </ul>
-                                        {% else %}
-                                            <a href="/login" class="btn palatin-btn">Login</a>
-                                        {% endif %}
+                                        </div>
+
                                     </li>
+                                    <li><a href="#">Profile</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/api/profile/">Profile</a></li>
+                                            <li><a href ="/api/user/bookings/">Bookings</a></li>
+                                            {% if is_hotel_manager %}
+                                                <li><a href="/api/add/hotel/page/" class="btn palatin-btn">Add Hotel</a></li>
+                                                <li><a href="/api/my/hotels" class="btn palatin-btn">My hotels</a></li>
+                                            {% endif %}
+                                            <li><a href="/logout" class="btn palatin-btn">Log out</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="/api/hotels/">Hotels</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <div class="menu-btn">
+                                    </div>
 
+                                </ul>
+                                <!-- Button -->
+                                <div class="menu-btn">
+                                    <a href="/api/hotels/" class="btn palatin-btn">Make a Reservation</a>
+                                </div>
+                            </div>
                             <!-- Nav End -->
-                        </div>
                         </div>
                     </nav>
                 </div>
@@ -124,93 +120,122 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(http://localhost:8000/static/img/bg-img/bg-6.jpg);">
         <div class="bradcumbContent">
-            <h2>Hotels</h2>
+            <h2>Create a New Hotel</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 
-    <!-- ##### Book Now Area Start ##### -->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Check Hotel Availability</h2>
-                    <form action="{% url 'check_hotel_availability' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="check_in">Check In:</label>
-                                <input type="date" id="check_in" name="check_in" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="check_out">Check Out:</label>
-                                <input type="date" id="check_out" name="check_out" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="adults">Adults:</label>
-                                <select id="adults" name="adults" class="form-control" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="children">Children:</label>
-                                <select id="children" name="children" class="form-control" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Check Availability</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-    <!-- ##### Book Now Area End ##### -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Hotel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
 
-    <!-- ##### Rooms Area Start ##### -->
-    <section class="rooms-area section-padding-0-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <div class="section-heading text-center">
-                        <div class="line-"></div>
-                        <h2>Choose a hotel</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% for h in hotels %}
-                <!-- Single Rooms Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Thumbnail -->
-                        <div class="bg-thumbnail bg-img" style="background-image: url('#');"></div>
-                        <!-- Price -->
-                        <p class="price-from">{{ h.name }}</p>
-                        <!-- Rooms Text -->
-                        <div class="rooms-text">
-                            <div class="line"></div>
-                            <h4>{{ h.name }}</h4>
-                            <p>{{ h.description }}</p>
-                        </div>
-                        <!-- Book Room -->
-                        <a href="{% url 'hotel_detail' h.id %}" class="book-room-btn btn palatin-btn">Book now</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <label for="stars">Stars:</label>
+        <input type="number" id="stars" name="stars" min="0" max="5" required>
+
+                <!-- Room Type Fields -->
+        <label for="type">Room Type Name:</label>
+        <input type="text" id="type" name="type" required><br>
+
+        <label for="price_per_night">Price Per Night:</label>
+        <input type="number" id="price_per_night" name="price_per_night" min="0" step="0.01" required><br>
+
+        <label for="number_of_beds">Number of Beds:</label>
+        <input type="number" id="number_of_beds" name="number_of_beds" min="1" required><br>
+
+        <label for="room_capacity">Room Capacity:</label>
+        <input type="number" id="room_capacity" name="room_capacity" min="1" required><br>
+
+        <label for="room_count">Room Count:</label>
+        <input type="number" id="room_count" name="room_count" min="0" required><br>
+
+        <button type="submit">Create Hotel</button>
+    </form>
+</body>
     <!-- ##### Rooms Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
